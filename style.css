@@ -1,0 +1,86 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Verdana, arial, sans-serif;
+    background-image: url(2939803.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.container {
+    width: 430px;
+    padding: 40px 20px;
+    background: rgb(205, 211, 231);
+}
+.container h1 {
+    color: #0073d7;
+    font-size: 30px;
+    width: 100%;
+    margin-top: -15px;
+    text-align: center;
+    
+}
+#text {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: #021652;
+    border: 2px solid #3ba9f4;
+    border-radius: 2px;
+    resize: none;
+    margin-bottom: 35px;
+    height: 100px;
+    padding: 10px;
+    font-size: 20px;
+}
+#encrypt{
+    transform: translate(35px, -10px);
+    background: #3ba9f4;
+    color: white;
+    height: 30px;
+    border: none;
+    border-radius: 2px;
+    width: 100px;
+    cursor: pointer;
+}
+#key{
+    transform: translate(35px, -10px);
+    height: 30px;
+    cursor: pointer;
+    width: 100px;
+    border: 1px solid #3ba9f4;
+}
+#decrypt{
+    transform: translate(35px, -10px);
+    background: #3ba9f4;
+    color: white;
+    height: 30px;
+    border: none;
+    border-radius: 2px;
+    width: 100px;
+    cursor: pointer;
+}
+#filename{
+    transform: translate(20px);
+    border: 1px solid #3ba9f4;
+    border-radius: 1px;
+    color: #052a53;
+    padding: 0 10px;
+    height: 30px;
+}
+#download{
+    transform: translate(30px);
+    background: #3ba9f4;
+    color: white;
+    height: 30px;
+    border: none;
+    border-radius: 2px;
+    width: 130px;
+    cursor: pointer;
+}

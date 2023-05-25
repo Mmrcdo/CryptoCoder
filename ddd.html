@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class=" container">
+        <h1>CryptoCoder</h1>
+        <div>
+            <textarea placeholder="Type your text here ..." id="text"></textarea>
+             <button id="encrypt">Encrypt</button>
+            <input type="number" id="key" placeholder="key" min="0" max="24">
+             <button id="decrypt">Decrypt</button>
+            <input type="url" placeholder="Specify a filename" id="filename">
+            <button id="download">Download file</button>
+        </div>
+    </div>
+
+
+    <script>
+
+        function donwloadFile(filename, content) {
+            const element = document.createElement('a');
+
+            const blob = new Blob([content], {
+                type: 'plain/text'
+            });
+            const fileUrl = URL.createObjectURL(blob);
+
+            element.setAttribute('href', fileUrl);
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+
+            document.body.appendChild(element);
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        window.onload = () => {
+            document.getElementById('download').addEventListener('click', () =>{
+                const filename = document.getElementById('filename').value;
+                const content = document.getElementById('text').value;
+
+                if (filename && content){
+                    donwloadFile(filename, content);
+                }
+            });
+        }
+
+        const btnEncrypt = document.querySelector('#encrypt');
+        const btnDecrypt = document.querySelector('#decrypt');
+        const key = document.querySelector('#key');
+
+        const listLetters = ['a','b','c','d','e','f','g','h','i','j','k','l',
+                            'm','n','o','p','q','r','s','t','u','v','w','y','z',]
+        
+        let newText = '';
+
+        btnEncrypt.addEventListener('click', () => {
+            const textarea = document.querySelector('#text');
+            const keyValue = Number(key.value);
+
+            for (let letter of textarea.value) {
+                letter = letter.toLowerCase();
+                if (!listLetters.includes(letter)) {
+                    continue
+                }
+
+                const indexLetter = listLetters.findIndex((item) => item === letter);
+                let indexNewLetter = indexLetter + keyValue;
+
+                if(indexNewLetter > 25){
+                    indexNewLetter -= 26;
+                }
+                newText += listLetters[indexNewLetter]
+                textarea.value = newText;
+            }
+            newText = '';
+        });
+
+        btnDecrypt.addEventListener('click', () => {
+            const textarea = document.querySelector('#text');
+            const keyValue = Number(key.value);
+
+            for (let letter of textarea.value) {
+                letter = letter.toLowerCase();
+                if (!listLetters.includes(letter)) {
+                    continue
+                }
+
+                const indexLetter = listLetters.findIndex((item) => item === letter);
+                let indexNewLetter = indexLetter - keyValue;
+                
+                if(indexNewLetter < 0) {
+                    indexNewLetter += 26;
+                }
+                newText += listLetters[indexNewLetter]
+                textarea.value = newText;
+            }
+            newText = '';
+        });
+
+    </script>
+</body>
+</html>
